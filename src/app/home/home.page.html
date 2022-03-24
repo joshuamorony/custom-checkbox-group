@@ -1,20 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Checkbox Group </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="myForm">
+    <h2>Select your pizza toppings!</h2>
+    <p>There are no limits here</p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <app-checkbox-group formControlName="toppings">
+      <app-checkbox value="cheese" label="Cheese"></app-checkbox>
+      <app-checkbox value="ham" label="Ham"></app-checkbox>
+      <app-checkbox value="pineapple" label="Pineapple"></app-checkbox>
+    </app-checkbox-group>
+  </form>
+
+  <ion-card>
+    <ion-card-header><h2>Form values</h2></ion-card-header>
+    <ion-card-content *ngIf="myForm.valueChanges | async as values">
+      <pre>{{ values | json }}</pre>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
